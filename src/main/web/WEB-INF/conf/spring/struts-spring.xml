@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean name="/login" class="com.neodem.recipe.web.actions.LoginAction" singleton="false">
+		<property name="webUserService"><ref bean="webUserService"/></property>
+		<property name="securityService"><ref bean="securityService"/></property>
+	</bean>
+	
+	<bean name="/logout" class="com.neodem.recipe.web.actions.LogoutAction" singleton="false">
+		<property name="securityService"><ref bean="securityService"/></property>
+	</bean>
+	
+	<bean name="/searchFor" class="com.neodem.recipe.web.actions.SearchAction" singleton="false">
+		<property name="recipeDataService"><ref bean="recipeDataService"/></property>
+	</bean>
+	
+	<bean name="/view" class="com.neodem.recipe.web.actions.ViewAction" singleton="false">
+		<property name="recipeDataService"><ref bean="recipeDataService"/></property>
+	</bean>
+	
+	<bean name="/ingredient" class="com.neodem.recipe.web.actions.IngredientAction" singleton="false">
+		<property name="recipeDataService"><ref bean="recipeDataService"/></property>
+	</bean>
+
+	<bean name="/recipe" class="com.neodem.recipe.web.actions.RecipeAction" singleton="false">
+		<property name="recipeDataService"><ref bean="recipeDataService"/></property>
+	</bean>
+	
+	<bean name="/unit" class="com.neodem.recipe.web.actions.UnitAction" singleton="false">
+		<property name="recipeDataService"><ref bean="recipeDataService"/></property>
+	</bean>
+	
+	<bean name="/print" class="com.neodem.recipe.web.actions.PrintAction" singleton="false">
+		<property name="recipeDataService"><ref bean="recipeDataService"/></property>
+	</bean>
+</beans>

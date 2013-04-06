@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- DataSource Setup -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/recipe</value>
+		</property>
+	</bean>
+
+<!-- Hibernate Setup -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource"/>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>hibernate/Recipe.hbm.xml</value>
+				<value>hibernate/RecipeIngredient.hbm.xml</value>
+				<value>hibernate/Ingredient.hbm.xml</value>
+				<value>hibernate/Unit.hbm.xml</value>	
+				<value>hibernate/User.hbm.xml</value>	
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">net.sf.hibernate.dialect.MySQLDialect</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<!-- beans -->
+	
+	<bean id="fileLocator" class="com.neodem.common.service.impl.SpringFileLocator"/>
+
+		
+</beans>

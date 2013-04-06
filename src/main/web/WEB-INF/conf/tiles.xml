@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+       "http://struts.apache.org/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+  <!-- =======================================================  -->
+  <!-- Master definitions  										-->
+  <!-- =======================================================  -->
+
+  <definition name=".baseDef" path="/base/_mainLayout.jsp">
+   	<put name="titleKey"  	value="" />
+   	<put name="welcomeKey" 	value=""/>
+  	<put name="skip" 		value=""/>
+  	
+	<put name="header"  	value="/base/defaultHeader.jsp" />
+	<put name="menu"    	value="/base/mainMenu.jsp" />
+  	<put name="body"    	value="/base/defaultBody.jsp" />
+	<put name="footer"  	value="/base/defaultFooter.jsp" />
+  </definition>
+  
+  <!-- =======================================================  -->
+  <!-- Base Pages												-->
+  <!-- =======================================================  -->
+  
+  <definition name=".home" extends=".baseDef">
+   	<put name="titleKey"  	value="page.home.title" />
+   	<put name="welcomeKey" 	value="page.home.label.welcome"/>
+    <put name="skip" 		value="home"/>
+   	<put name="body" 		value="/base/homeBody.jsp"/>
+  </definition>
+    
+
+  <!-- =======================================================  -->
+  <!-- Misc. Pages												-->
+  <!-- =======================================================  --> 
+       
+  <definition name="error.system" extends=".baseDef">
+   	<put name="titleKey"  	value="recipe.page.systemError.title" />
+   	<put name="welcomeKey" 	value="recipe.page.systemError.label.welcome"/>
+   	<put name="body"    	value="/base/systemError.jsp" />
+  </definition> 
+  
+</tiles-definitions>

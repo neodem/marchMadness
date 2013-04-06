@@ -1,0 +1,57 @@
+body { font-family: Arial; font-size: 12px; color: black; margin-left: 0; margin-right: 0; margin-top:0 }
+h1,h2,h3,h4,h5,p,ul { font-family: Arial }
+A {text-decoration:none;}
+
+/* misc. selectors */
+.bannerTitle { font-family: Times New Roman; color: #207A22; font-size: 18px; font-weight: bold}
+.menuText { font-size: 13px; color: white; font-weight:bold }
+.redDot { font-size:24px; color: red}
+.error {  font-size: 14px; color: maroon }
+.message {  font-size: 14px; color: maroon }
+.copyright { font-size: 9px; color: white}
+a.white { color: white }
+a.tinyLink { color: white;  font-size: 9px; text-decoration:underline }
+
+/* accent color selectors */
+.bodyAccentBold  {  font-size: 12px; color: #207A22; font-weight:bold }
+.mediumAccent{ font-size: 14px; color: #207A22 }
+.largeAccent { font-size: 16px; color: #207A22 }
+.largeAccentBold { font-size: 16px; color: #207A22; font-weight: bold; }
+.largeAccentBoldUnderlined { font-size: 16px; color: #207A22; font-weight: bold; text-decoration: underline;}
+.hugeAccentBold { font-size: 24px;  color: #207A22; font-weight:bold;}
+.accent {color: #993200;}
+
+/* regular classes */
+.small { font-size: 10px }
+.smallWhite	{ font-size: 10px; color: white }
+.smallRed { font-size: 10px; color: red}
+.smallRedBold { font-size: 10px; color: red; font-weight: bold }
+
+.bodyBold { font-size: 12px; font-weight: bold }
+.bodyWhite	{  font-size: 12px; color: white }
+.bodyRed  {  font-size: 12px; color: red }
+.bodyWhiteBold {  font-size: 12px; color: white; font-weight:bold }
+.bodyRedBold  {  font-size: 12px; color: red; font-weight:bold }
+.bodyBoldUnderlined { font-size: 12px; font-weight:bold; text-decoration: underline; }
+
+.medium { font-size: 14px}
+.mediumBold { font-size: 14px; font-weight: bold; }
+.mediumWhite{ font-size: 14px; color: white }
+.mediumWhiteBold { font-size: 14px; font-weight:bold; color: white }
+.mediumBoldUnderlined { font-size: 14px; font-weight:bold; text-decoration: underline; }
+
+.large { font-size: 16px}
+.largeBold{ font-size: 16px; font-weight:bold; }
+.largeWhite { font-size: 16px; color: white}
+.largeWhiteBold { font-size: 16px; font-weight:bold; color: white}
+.largeRedBold { font-size: 16px; color: red; font-weight:bold }
+.largeWhiteBoldUnderlined { font-size: 16px; font-weight:bold; color: white; text-decoration: underline;}
+
+.largerBold{ font-size: 18px; font-weight:bold; }
+.largerBoldUnderlined { color: black; font-size: 18px; font-weight:bold; text-decoration: underline;}
+.largerWhite { font-size: 18px; color: white}
+.largerWhiteBold { font-size: 18px; font-weight:bold; color: white}
+.largerRedBold { font-size: 18px; color: red; font-weight:bold; }
+
+.hugeBold { font-size: 24px; font-weight:bold; }
+.hugeBoldItalic { font-size: 24px; font-weight:bold; font-style: italic; }

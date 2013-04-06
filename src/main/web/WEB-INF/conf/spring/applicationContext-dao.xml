@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="baseDAO" class="com.neodem.recipe.db.hibernate.dao.HibernateBaseDAO">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+	
+	<bean id="ingredientDAO" class="com.neodem.recipe.db.hibernate.dao.HibernateIngredientDAO">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+	
+	<bean id="recipeDAO" class="com.neodem.recipe.db.hibernate.dao.HibernateRecipeDAO">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+	
+	<bean id="userDAO" class="com.neodem.recipe.db.hibernate.dao.HibernateUserDAO">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+</beans>

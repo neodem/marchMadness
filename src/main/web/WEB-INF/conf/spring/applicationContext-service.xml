@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean name="securityService" class="com.neodem.recipe.service.impl.DefaultSecurityService" singleton="true">
+		<property name="logInTrackingService"><ref bean="logInTrackingService"/></property>
+		<property name="userDAO"><ref bean="userDAO"/></property>
+		<property name="timeOutAmount">
+			<value>600000</value>
+		</property>
+		<property name="allowed">
+			<value>3</value>
+		</property>
+	</bean>
+	
+	<bean name="logInTrackingService" class="com.neodem.recipe.service.impl.DefaultLogInTrackingService" singleton="true"/>
+	<bean name="webUserService" class="com.neodem.recipe.service.impl.DefaultWebUserService" singleton="true"/>
+	
+	<bean name="strutsTokenSupport" class="com.neodem.recipe.web.service.SpringStrutsTokenSupport" singleton="true">
+		<property name="securityService"><ref bean="securityService"/></property>
+	</bean>
+	
+	<bean name="recipeDataService" class="com.neodem.recipe.service.impl.DefaultRecipeDataService" singleton="true">
+		<property name="recipeDAO"><ref bean="recipeDAO"/></property>
+		<property name="ingredientDAO"><ref bean="ingredientDAO"/></property>	
+		<property name="baseDAO"><ref bean="baseDAO"/></property>		
+	</bean>
+</beans>

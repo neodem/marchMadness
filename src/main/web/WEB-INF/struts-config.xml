@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+    "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+
+    <!-- ======================================== Form Bean Definitions -->
+
+    <form-beans>
+    	<form-bean name="LoginForm" type="com.neodem.recipe.web.forms.LoginForm"/>  	
+    	<form-bean name="SearchForm" type="com.neodem.recipe.web.forms.SearchForm"/>     		
+     	<form-bean name="ViewForm" type="com.neodem.recipe.web.forms.ViewForm"/>  
+      	<form-bean name="ingredientForm" type="com.neodem.recipe.web.forms.IngredientForm"/>     	   
+     	<form-bean name="recipeForm" type="com.neodem.recipe.web.forms.RecipeForm"/> 
+      	<form-bean name="unitForm" type="com.neodem.recipe.web.forms.UnitForm"/> 
+
+    </form-beans>
+    
+    <!-- =================================== Global Exception Definitions -->    
+    
+    <global-exceptions>				
+    	<exception 	key = "recipe.error.unknown" 
+    				scope="request" 
+    				handler="com.neodem.recipe.web.service.CustomExceptionHandler"
+    				type="com.neodem.recipe.common.RSRuntimeException" 
+    				path="error.system"
+    				/> 	
+        	<exception 	key = "recipe.error.unknown" 
+    				scope="request" 
+    				handler="com.neodem.recipe.web.service.CustomExceptionHandler"
+    				type="org.springframework.core.NestedRuntimeException" 
+    				path="error.system"
+    				/> 					
+    </global-exceptions>
+
+    <!-- =================================== Global Forward Definitions -->
+
+    <global-forwards>
+    	<forward name="start" path="/start.do" />
+    	<forward name="login" path="/login.do" />
+    	<forward name="timeOut" path="/base/login.jsp" />
+    	<forward name="home" path="/home.do" />
+    	<forward name="error" path="error.system" />
+    </global-forwards>
+
+    <!-- =================================== Action Mapping Definitions -->
+
+    <action-mappings>
+    	<action 	path="/start"
+	 				type="org.apache.struts.actions.ForwardAction"
+	 				unknown="true"
+	 				parameter = "/base/login.jsp"
+					/>
+      
+    	<action	path="/login" 
+	 				type="org.springframework.web.struts.DelegatingActionProxy"
+	 				scope="request"		
+	 				name="LoginForm"
+	 				validate="true" 
+	 				input="/base/login.jsp" 
+	 				>
+	 				<forward name="failure" path = "/base/login.jsp"/>
+	 				<forward name="badLogin" path = "/base/badLogin.jsp"/>
+	 				<forward name="success" path = "/home.do"/>
+		</action>
+		
+		<action	path="/search" 
+					type="org.apache.struts.actions.ForwardAction"
+					parameter = ".search"
+	 				>
+		</action>
+		
+		<action	path="/print"
+			 		type="org.springframework.web.struts.DelegatingActionProxy"
+	 				scope="request"		
+	 				name="recipeForm" 
+	 				>
+	 				<forward name="success" path = ".print"/>
+		</action>
+		
+		<action	path="/searchIngredient" 
+					type="org.apache.struts.actions.ForwardAction"
+					parameter = ".search.ingredients"
+	 				>
+		</action>
+		
+		<action	path="/searchFor" 
+	 				type="org.springframework.web.struts.DelegatingActionProxy"
+	 				scope="request"		
+	 				name="SearchForm"
+	 				validate="true" 
+	 				input=".search" 
+	 				>
+	 				<forward name="failure" path = ".search"/>
+	 				<forward name="success" path = ".search.select"/>
+	 				<forward name="sIngredient" path =".search.select.ingredient"/>
+		</action>
+	
+		<action	path="/view" 
+	 				type="org.springframework.web.struts.DelegatingActionProxy"
+	 				name="ViewForm"
+	 				>
+	 				<forward name="success" path = ".view"/>
+	 				<forward name="notFound" path = ".view.notFound"/>
+	 				<forward name="failure" path = "/search"/>
+	
+		</action>
+		
+		<action path="/ingredient"
+				type="org.springframework.web.struts.DelegatingActionProxy"
+				name="ingredientForm"
+				scope="request"
+				parameter="method">
+				<forward name="edit" path=".edit.ingredient"/>
+				<forward name="view" path=".view.ingredient"/>
+		</action>
+		
+		<action path="/unit"
+				type="org.springframework.web.struts.DelegatingActionProxy"
+				name="unitForm"
+				scope="request"
+				parameter="method">
+				<forward name="success" path=".units"/>
+		</action>
+		
+		<action path="/recipe"
+				type="org.springframework.web.struts.DelegatingActionProxy"
+				name="recipeForm"
+				scope="request"
+				parameter="method">
+				<forward name="edit" path=".edit.recipe"/>
+				<forward name="view" path=".view.recipe"/>
+		</action>
+		
+		
+		
+				
+		<action 	path="/logout"
+					type="org.springframework.web.struts.DelegatingActionProxy"
+					>				
+					<forward name="success" path=".logout" />
+		</action>
+		
+		<action 	path="/home"
+					type="org.apache.struts.actions.ForwardAction"
+					parameter = ".home"
+					/>
+					
+					
+ 	</action-mappings>
+
+    <!-- ======================================== SetUp costom controller -->
+
+	<controller processorClass="com.neodem.recipe.web.struts.RSRequestProcessor"/>
+
+
+   <!-- ================================ Message Resources Definitions -->
+	
+	<message-resources parameter="resources.messages" />
+
+   <!-- ======================================= Plug Ins Configuration -->
+    
+   <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+   		<set-property property="contextConfigLocation" value="/WEB-INF/conf/spring/struts-spring.xml"/>
+   </plug-in>
+    
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+	 	<set-property property="pathnames" value="/WEB-INF/conf/validator/validator-rules.xml,/WEB-INF/conf/validator/validator-default.xml"/>
+	</plug-in>
+	
+	<plug-in className="org.apache.struts.tiles.TilesPlugin" >
+  	  <set-property property="definitions-config" value="/WEB-INF/conf/tiles.xml" />
+  	  <set-property property="definitions-parser-validate" value="true" />
+   	  <set-property property="moduleAware" value="false" />
+  	</plug-in>
+    
+</struts-config>
+
+
